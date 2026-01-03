@@ -105,11 +105,9 @@ class MainGame(arcade.View):
             self.left = True
         elif key in (arcade.key.RIGHT, arcade.key.D):
             self.right = True
-        elif key in (arcade.key.UP, arcade.key.W):
-            self.up = True
         elif key in (arcade.key.DOWN, arcade.key.S):
             self.down = True
-        elif key == arcade.key.SPACE:
+        elif key in (arcade.key.SPACE, arcade.key.UP, arcade.key.W):
             self.jump_pressed = True
             self.jump_buffer_timer = JUMP_BUFFER
     
@@ -118,11 +116,9 @@ class MainGame(arcade.View):
             self.left = False
         elif key in (arcade.key.RIGHT, arcade.key.D):
             self.right = False
-        elif key in (arcade.key.UP, arcade.key.W):
-            self.up = False
         elif key in (arcade.key.DOWN, arcade.key.S):
             self.down = False
-        elif key == arcade.key.SPACE:
+        elif key in (arcade.key.SPACE, arcade.key.UP, arcade.key.W):
             self.jump_pressed = False
             if self.player.change_y > 0:
                 self.player.change_y *= 0.45
