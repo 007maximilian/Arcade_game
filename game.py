@@ -5,7 +5,8 @@ from constants.physics import (
     LADDER_SPEED, CAMERA_LERP
 ) # everything yep
 from constants.window import SCREEN_WIDTH, SCREEN_HEIGHT, TILE_SIZE
-from hero import Hero
+from _hero import Hero
+from guns import PistolGun
 
 
 class GameView(arcade.View):
@@ -14,6 +15,7 @@ class GameView(arcade.View):
         self.hero: None | Hero = None # need to write someday
         self.player_list = arcade.SpriteList()
         self.collision_list = arcade.SpriteList()
+        self.gun_list = arcade.SpriteList()
         self.gui_camera = arcade.camera.Camera2D()
         self.world_camera = arcade.camera.Camera2D()
 
@@ -46,6 +48,10 @@ class GameView(arcade.View):
         self.hero.center_y = 200
         self.player_list.append(self.hero)
 
+        self.gun = PistolGun(self.hero)
+        self.gun_list.append(self.gun)
+        self.hero.gun = self.gun
+
         self.engine = arcade.PhysicsEnginePlatformer(
             self.hero,
             walls=self.collision_list,
@@ -57,6 +63,7 @@ class GameView(arcade.View):
 
         self.world_camera.use()
         self.player_list.draw()
+        self.gun_list.draw()
         self.collision_list.draw() # delete when max will make tilemap
 
         # self.gui_camera.use() <- if theres text on the screen (after it draw batch)
@@ -111,6 +118,7 @@ class GameView(arcade.View):
 
         self.engine.update()
         self.player_list.update()
+        self.gun_list.update()
 
         target_x = self.hero.center_x
         target_y = self.hero.center_y
