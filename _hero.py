@@ -1,6 +1,7 @@
 import arcade
 from enums import SpriteDirection
-from guns import PistolGun
+from guns import Pistol
+import math
 
 
 class Hero(arcade.Sprite):
@@ -10,7 +11,7 @@ class Hero(arcade.Sprite):
         self.scale=1.0
         self.direction = SpriteDirection.RIGHT
         self.keys = set()
-        self.gun: None | PistolGun = None
+        self.gun: None | Pistol = None
     
     def update(self, delta_time):
         if self.change_x < 0 and self.direction == SpriteDirection.RIGHT:
@@ -18,8 +19,16 @@ class Hero(arcade.Sprite):
             self.texture = self.texture.flip_horizontally()
             if self.gun is not None:
                 self.gun.flip()
+                gun_angle = self.gun.angle
+                gun_pi_angle = math.radians(360 - gun_angle)
+                self.gun.direction = self.direction
+                self.gun.rotate(gun_pi_angle)
         elif self.change_x > 0 and self.direction == SpriteDirection.LEFT:
             self.direction = SpriteDirection.RIGHT
             self.texture = self.texture.flip_horizontally()
             if self.gun is not None:
                 self.gun.flip()
+                gun_angle = self.gun.angle
+                gun_pi_angle = math.pi - math.radians(gun_angle)
+                self.gun.direction = self.direction
+                self.gun.rotate(gun_pi_angle)

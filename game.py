@@ -6,18 +6,19 @@ from constants.physics import (
 ) # everything yep
 from constants.window import SCREEN_WIDTH, SCREEN_HEIGHT, TILE_SIZE
 from _hero import Hero
-from guns import PistolGun
+from guns import Pistol
+import math
 
 
 class GameView(arcade.View):
     def on_show_view(self): # jus like init in arcade.View
         arcade.set_background_color(arcade.color.LIGHT_BLUE)
-        self.hero: None | Hero = None # need to write someday
         self.player_list = arcade.SpriteList()
         self.collision_list = arcade.SpriteList()
         self.gun_list = arcade.SpriteList()
         self.gui_camera = arcade.camera.Camera2D()
         self.world_camera = arcade.camera.Camera2D()
+        self.hero: None | Hero = None
 
         self.engine: None | arcade.PhysicsEnginePlatformer = None
         self.left = self.right = self.up = self.down = self.jump_pressed = False
@@ -28,14 +29,14 @@ class GameView(arcade.View):
         self.setup()
     
     def setup(self):
-        # someday need to write sth like tilemap loading..
+        # someday need to write sth like tilemap loading...
 
         # initialize better after tilemaps
         self.world_height = 5000
         self.world_width = 5000
 
         # example jus for testing
-        for i in range(2):
+        for i in range(10):
             sprite = arcade.Sprite()
             sprite.texture = arcade.load_texture(':resources:images/tiles/grass.png')
             sprite.center_y = TILE_SIZE // 2
@@ -48,15 +49,16 @@ class GameView(arcade.View):
         self.hero.center_y = 200
         self.player_list.append(self.hero)
 
-        self.gun = PistolGun(self.hero)
+        self.gun = Pistol(self.hero)
         self.gun_list.append(self.gun)
         self.hero.gun = self.gun
+        self.gun.rotate(0)
 
         self.engine = arcade.PhysicsEnginePlatformer(
             self.hero,
             walls=self.collision_list,
             gravity_constant=GRAVITY
-        ) # MAKE PLATFROMS YEE + LADDERS
+        ) # MAKE PLATFORMS YEE + LADDERS
     
     def on_draw(self):
         self.clear()
@@ -133,3 +135,11 @@ class GameView(arcade.View):
         self.world_camera.position = arcade.math.lerp_2d(
             self.world_camera.position, target, CAMERA_LERP
         )
+
+    def on_mouse_motion(self, x: int, y: int, dx: int, dy: int):
+        gun_x = self.gun.center_x
+        gun_y = self.gun.center_y
+        x_diff = x - gun_x
+        y_diff = y - gun_y
+        angle = math.atan2(y_diff, x_diff)
+        self.gun.rotate(angle)
