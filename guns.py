@@ -1,6 +1,7 @@
 import arcade
 import math
 from enums import SpriteDirection
+from bullet import Bullet
 
 
 class Gun(arcade.Sprite):
@@ -35,9 +36,9 @@ class Pistol(Gun):
         self.direction = self.owner.direction
         self.texture = self.textures[self.curr_index]
         if self.direction == SpriteDirection.RIGHT:
-            self.center_x = self.owner.center_x + self.offset_x
+            self.center_x = self.owner.center_x + self.offset_x - 23
         else:
-            self.center_x = self.owner.center_x - self.offset_x
+            self.center_x = self.owner.center_x - self.offset_x + 23
         self.center_y = self.owner.center_y + self.offset_y
 
     def rotate(self, angle):
@@ -50,3 +51,11 @@ class Pistol(Gun):
             self.angle = math.degrees(angle)
             self.offset_x = self.owner.width // 2 + math.cos(angle) * self.radius
             self.offset_y = math.sin(angle) * self.radius
+    
+    def shoot(self):
+        angle = math.radians(self.angle)
+        bullet = Bullet(texture='assets/sprites/bullet-1.png', angle=360 - self.angle,
+                        x=self.center_x + self.width // 2 * math.cos(360 - angle),
+                        y=self.center_y + self.height // 2 * math.sin(360 - angle))
+        return bullet
+        

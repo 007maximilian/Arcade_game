@@ -26,6 +26,8 @@ class GameView(arcade.View):
         self.time_since_ground = 999.0
         self.jumps_left = MAX_JUMPS
 
+        self.bullet_list = arcade.SpriteList()
+
         self.setup()
     
     def setup(self):
@@ -66,6 +68,7 @@ class GameView(arcade.View):
         self.world_camera.use()
         self.player_list.draw()
         self.gun_list.draw()
+        self.bullet_list.draw()
         self.collision_list.draw() # delete when max will make tilemap
 
         # self.gui_camera.use() <- if theres text on the screen (after it draw batch)
@@ -121,6 +124,7 @@ class GameView(arcade.View):
         self.engine.update()
         self.player_list.update()
         self.gun_list.update()
+        self.bullet_list.update()
 
         target_x = self.hero.center_x
         target_y = self.hero.center_y
@@ -143,3 +147,7 @@ class GameView(arcade.View):
         y_diff = y - gun_y
         angle = math.atan2(y_diff, x_diff)
         self.gun.rotate(angle)
+    
+    def on_mouse_press(self, x, y, button, modifiers):
+        bullet = self.gun.shoot()
+        self.bullet_list.append(bullet)
