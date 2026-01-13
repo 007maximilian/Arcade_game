@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.10" tiledversion="1.11.2" name="tiles_1" tilewidth="48" tileheight="48" tilecount="16" columns="0">
+<tileset version="1.10" tiledversion="1.11.2" name="tiles_1" tilewidth="48" tileheight="48" tilecount="19" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="2">
   <image source="../raw/concrete_floor.ase" width="48" height="48"/>
@@ -48,5 +48,14 @@
  </tile>
  <tile id="16">
   <image source="../raw/table_r.ase" width="48" height="48"/>
+ </tile>
+ <tile id="17">
+  <image source="../raw/rum_bottle.ase" width="48" height="48"/>
+ </tile>
+ <tile id="18">
+  <image source="../raw/rum_bottle_floor.ase" width="48" height="48"/>
+ </tile>
+ <tile id="19">
+  <image source="../raw/stool_1.ase" width="48" height="48"/>
  </tile>
 </tileset>
