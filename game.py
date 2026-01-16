@@ -48,18 +48,18 @@ class GameView(arcade.View):
         self.hero.gun = self.gun
         self.gun.rotate(0)
 
+        self.tilemap = arcade.load_tilemap("assets/maps/test_map.tmx", scaling=TILE_SCALING)
+        self.collision_list = self.tilemap.sprite_lists['collision']
+        self.deadable = self.tilemap.sprite_lists['deadable']
+        self.specials = self.tilemap.sprite_lists['specials']
+        self.breakable = self.tilemap.sprite_lists['breakable']
+        self.walls = self.tilemap.sprite_lists['walls']
+
         self.engine = arcade.PhysicsEnginePlatformer(
             self.hero,
             walls=self.collision_list,
             gravity_constant=GRAVITY
-        ) # MAKE PLATFORMS YEE + LADDERS
-
-        self.tilemap = arcade.load_tilemap("assets/maps/test_map.tmx", scaling=TILE_SCALING)
-        self.collision_list = self.tilemap.sprite_lists['collision']
-        self.deadable = self.tilemap.sprite_lists['dieable']
-        self.specials = self.tilemap.sprite_lists['specials']
-        self.breakable = self.tilemap.sprite_lists['breakable']
-        self.walls = self.tilemap.sprite_lists['walls']
+        ) # MAKE PLATFORMS YEE
     
     def on_draw(self):
         self.clear()
@@ -68,9 +68,9 @@ class GameView(arcade.View):
         self.player_list.draw()
         self.gun_list.draw()
         self.bullet_list.draw()
-        self.collision_list.draw()
         self.breakable.draw()
         self.specials.draw()
+        self.walls.draw()
 
         # self.gui_camera.use() <- if theres text on the screen (after it draw batch)
     
