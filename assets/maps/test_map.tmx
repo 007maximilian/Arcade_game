@@ -1,45 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="48" tileheight="48" infinite="1" nextlayerid="6" nextobjectid="1">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="48" tileheight="48" infinite="0" nextlayerid="7" nextobjectid="1">
  <tileset firstgid="1" source="../tilesets/tiles_1.tsx"/>
- <layer id="1" name="walls" width="20" height="20">
+ <layer id="2" name="walls" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   <chunk x="0" y="16" width="16" height="16">
-   eJxjYBgFo2AUkAqYoXig7KUWBgASfABD
-  </chunk>
-   <chunk x="16" y="16" width="16" height="16">
-   eJxjYBgFo2DgAAsejE8NExSDACOSWkYG7IAJB2ZGswuXflxmEGs/LjOYcWBK9YMwKxbMguZ+AIMMALE=
-  </chunk>
+   eJzt0DsKACAMBFE/8f5XtlFIYUIQTTUPBiwEF0sBAACAOHl32ipDNc5aM/qlq/RfWfusjRki/7f93teDvdoXfe+mcUicfRNdLwDz
   </data>
  </layer>
- <layer id="4" name="deadable" width="20" height="20">
+ <layer id="3" name="deadable" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   <chunk x="16" y="16" width="16" height="16">
-   eJxjYBgFo2AUDDYgigNTGwAAMkQAfw==
-  </chunk>
+   eJztw0EJAAAIBLArYf+qJri/wgZLAACAi6b8bAFv7AB/
   </data>
  </layer>
- <layer id="2" name="specials" width="20" height="20">
+ <layer id="4" name="specials" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   <chunk x="16" y="16" width="16" height="16">
-   eJxjYBgFo4D+QHigHTAKwAAAIRgAFA==
-  </chunk>
+   eJztzjENAAAIA7B5wL9XTCyBo1XQBADgr7kOAFULVTwAFA==
   </data>
  </layer>
- <layer id="3" name="breakable" width="20" height="20">
+ <layer id="5" name="breakable" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   <chunk x="16" y="16" width="16" height="16">
-   eJxjYBgFIwXwI+GhqH8UUB8AAPiwAIg=
-  </chunk>
+   eJxjYBgFo2AUjIJRMApGAbUBPxIejGDUfaNgFIyCgQIAagIAiA==
   </data>
  </layer>
- <layer id="5" name="collision" width="20" height="20">
+ <layer id="6" name="collision" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   <chunk x="0" y="16" width="16" height="16">
-   eJxjYBgFo2AUkAqYoXig7KUWBgASfABD
-  </chunk>
-   <chunk x="16" y="16" width="16" height="16">
-   eJxjYBgFIwXwI+HBop8FD8anhgmKQYARSS0yGxkw4cDMaHbh0o/LDGLtx2UGMw5MqX4QZsWCWdDcDwB3ywE4
-  </chunk>
+   eJzt0DsKACAMRMH4q73/bW0UApoQxASLHXhgIbhIBAAAAK911o+wb1eVtDt5FiEJZy4LeSks/lfSPmljBMv/Ld77irFX+6zv3dQOVWXfALqxAXo=
   </data>
  </layer>
 </map>
