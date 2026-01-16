@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="48" tileheight="48" infinite="0" nextlayerid="7" nextobjectid="1">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="48" tileheight="48" infinite="0" nextlayerid="8" nextobjectid="1">
  <editorsettings>
   <export target="test_map." format="tmx"/>
  </editorsettings>
@@ -7,6 +7,11 @@
  <layer id="2" name="walls" width="40" height="20">
   <data encoding="base64" compression="zlib">
    eJztkUEKACEMA32FLPr/fy4LHiTEupKClwwEFKVOaynGGGNu0G4LbLCfhv00svw6SQYZfn3U+VKn9cqV9bJK9v9W2LP6DRLdV/xYr3/qR29iDXV+OAvVD893d5+DMNeMRLxT4wmH
+  </data>
+ </layer>
+ <layer id="7" name="turrets" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztzjEBAAAMAiDD2D+jMXYMEpAAANDrADwxh7AAJQ==
   </data>
  </layer>
  <layer id="3" name="deadable" width="40" height="20">
