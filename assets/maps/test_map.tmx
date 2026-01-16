@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="48" tileheight="48" infinite="1" nextlayerid="5" nextobjectid="1">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="48" tileheight="48" infinite="1" nextlayerid="6" nextobjectid="1">
  <tileset firstgid="1" source="../tilesets/tiles_1.tsx"/>
- <layer id="1" name="collision" width="20" height="20">
+ <layer id="1" name="walls" width="20" height="20">
   <data encoding="base64" compression="zlib">
    <chunk x="0" y="16" width="16" height="16">
    eJxjYBgFo2AUkAqYoXig7KUWBgASfABD
@@ -11,7 +11,7 @@
   </chunk>
   </data>
  </layer>
- <layer id="4" name="dieable" width="20" height="20">
+ <layer id="4" name="deadable" width="20" height="20">
   <data encoding="base64" compression="zlib">
    <chunk x="16" y="16" width="16" height="16">
    eJxjYBgFo2AUDDYgigNTGwAAMkQAfw==
@@ -25,10 +25,20 @@
   </chunk>
   </data>
  </layer>
- <layer id="3" name="collision_unstable" width="20" height="20">
+ <layer id="3" name="breakable" width="20" height="20">
   <data encoding="base64" compression="zlib">
    <chunk x="16" y="16" width="16" height="16">
    eJxjYBgFIwXwI+GhqH8UUB8AAPiwAIg=
+  </chunk>
+  </data>
+ </layer>
+ <layer id="5" name="collision" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   <chunk x="0" y="16" width="16" height="16">
+   eJxjYBgFo2AUkAqYoXig7KUWBgASfABD
+  </chunk>
+   <chunk x="16" y="16" width="16" height="16">
+   eJxjYBgFIwXwI+HBop8FD8anhgmKQYARSS0yGxkw4cDMaHbh0o/LDGLtx2UGMw5MqX4QZsWCWdDcDwB3ywE4
   </chunk>
   </data>
  </layer>
