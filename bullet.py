@@ -6,7 +6,6 @@ import math
 class Bullet(arcade.Sprite):
     def __init__(self, x, y, angle, texture):
         super().__init__(texture, center_x=x, center_y=y)
-        self.angle = 360 - angle
         self.change_x = math.cos(math.radians(angle)) * BULLET_SPEED
         self.change_y = math.sin(math.radians(angle)) * BULLET_SPEED
     
