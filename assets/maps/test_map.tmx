@@ -6,27 +6,27 @@
  <tileset firstgid="1" source="../tilesets/tiles_1.tsx"/>
  <layer id="2" name="walls" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20LL6AAAAA+BgyAAAE=
+   eJztkUEKACEMA32FLPr/fy4LHiTEupKClwwEFKVOaynGGGNu0G4LbLCfhv00svw6SQYZfn3U+VKn9cqV9bJK9v9W2LP6DRLdV/xYr3/qR29iDXV+OAvVD893d5+DMNeMRLxT4wmH
   </data>
  </layer>
  <layer id="3" name="deadable" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20LL6AAAAA+BgyAAAE=
+   eJztwzENAAAIA7Apwb9M/gngoU2aAAAAl6Z+sn/QAHk=
   </data>
  </layer>
  <layer id="4" name="specials" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20LL6AAAAA+BgyAAAE=
+   eJztw7EJAAAIA7Ae4v93unYTnBNIAgDAZSrwtyAvAFU=
   </data>
  </layer>
  <layer id="5" name="breakable" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20LL6AAAAA+BgyAAAE=
+   eJxjYBgFo2AUjIJRMAoGN5AcaAegAUkseDCBUfdRBga7+0bBKBjqAAADKwIO
   </data>
  </layer>
  <layer id="6" name="collision" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJztkdEKgCAMRf0KKe3/vzOCHsa4m9YGBt0DFxRlns1SCCGErKCtFhhAP5tdxOIrfpbnX/w6yFu/QyTDr991rlSxtlxRL1ay/7eqParfVLz7ET/U60x9701dIzo/PYuonz4f3d0eBLlmxOMEx98LnQ==
+   eJztkUsKwCAMRD2FVL3/PUuhizJMYkukcTEPBvwRX7QUIYQQGfRsgQk7+TWylunXSBD52fzpN0h28Rt3nSv1MbZcWS9WVv9vhTmr3yHe+Ygf6/VNfe9OrBF9P3yLqB/uz84eH8JcV8TjBEqOC5Q=
   </data>
  </layer>
 </map>
