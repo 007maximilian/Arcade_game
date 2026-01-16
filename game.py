@@ -4,7 +4,7 @@ from constants.physics import (
     MAX_JUMPS, GRAVITY, MOVE_SPEED, JUMP_SPEED,
     LADDER_SPEED, CAMERA_LERP
 ) # everything yep
-from constants.window import SCREEN_WIDTH, SCREEN_HEIGHT, TILE_SIZE
+from constants.window import SCREEN_WIDTH, SCREEN_HEIGHT, TILE_SIZE, TILE_SCALING
 from _hero import Hero
 from guns import Pistol
 import math
@@ -27,29 +27,21 @@ class GameView(arcade.View):
         self.jumps_left = MAX_JUMPS
 
         self.bullet_list = arcade.SpriteList()
+        self.breakable = arcade.SpriteList()
+        self.deadable = arcade.SpriteList()
+        self.specials = arcade.SpriteList()
 
         self.setup()
     
     def setup(self):
-        # someday need to write sth like tilemap loading...
-
-        # initialize better after tilemaps
-        self.world_height = 5000
-        self.world_width = 5000
-
-        # example jus for testing
-        for i in range(10):
-            sprite = arcade.Sprite()
-            sprite.texture = arcade.load_texture(':resources:images/tiles/grass.png')
-            sprite.center_y = TILE_SIZE // 2
-            sprite.center_x = TILE_SIZE // 2 + i * TILE_SIZE
-            sprite.scale = 0.375 # 48/128
-            self.collision_list.append(sprite)
-        
         self.hero = Hero()
         self.hero.center_x = 48
         self.hero.center_y = 200
         self.player_list.append(self.hero)
+        # someday need to write sth like tilemap loading...
+        # initialize better after tilemaps
+        self.world_height = 5000
+        self.world_width = 5000
 
         self.gun = Pistol(self.hero)
         self.gun_list.append(self.gun)
@@ -61,6 +53,13 @@ class GameView(arcade.View):
             walls=self.collision_list,
             gravity_constant=GRAVITY
         ) # MAKE PLATFORMS YEE + LADDERS
+
+        self.tilemap = arcade.load_tilemap("assets/maps/test_map.tmx", scaling=TILE_SCALING)
+        self.collision_list = self.tilemap.sprite_lists['collision']
+        self.deadable = self.tilemap.sprite_lists['dieable']
+        self.specials = self.tilemap.sprite_lists['specials']
+        self.breakable = self.tilemap.sprite_lists['breakable']
+        self.walls = self.tilemap.sprite_lists['walls']
     
     def on_draw(self):
         self.clear()
@@ -69,7 +68,9 @@ class GameView(arcade.View):
         self.player_list.draw()
         self.gun_list.draw()
         self.bullet_list.draw()
-        self.collision_list.draw() # delete when max will make tilemap
+        self.collision_list.draw()
+        self.breakable.draw()
+        self.specials.draw()
 
         # self.gui_camera.use() <- if theres text on the screen (after it draw batch)
     
