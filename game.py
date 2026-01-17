@@ -6,13 +6,15 @@ from constants.physics import (
 ) # everything yep
 from constants.window import SCREEN_WIDTH, SCREEN_HEIGHT, TILE_SIZE, TILE_SCALING
 from _hero import Hero
+from enums import SpriteDirection
 from guns import Pistol
 import math
+from pyglet.graphics import Batch
 
 
 class GameView(arcade.View):
     def on_show_view(self): # jus like init in arcade.View
-        arcade.set_background_color(arcade.color.LIGHT_BLUE)
+        arcade.set_background_color(arcade.color.GRAY)
         self.player_list = arcade.SpriteList()
         self.collision_list = arcade.SpriteList()
         self.gun_list = arcade.SpriteList()
@@ -60,6 +62,20 @@ class GameView(arcade.View):
             walls=self.collision_list,
             gravity_constant=GRAVITY
         ) # MAKE PLATFORMS YEE
+
+        self.die_sound = arcade.load_sound(':resources:/sounds/hit2.wav')
+
+        self.count = 0
+
+        self.batch = Batch()
+
+        self.text = arcade.Text(
+            f'Count: {self.count}',
+            10, SCREEN_HEIGHT - 30,
+            arcade.color.GOLD,
+            20,
+            batch=self.batch
+        )
     
     def on_draw(self):
         self.clear()
@@ -67,12 +83,14 @@ class GameView(arcade.View):
         self.world_camera.use()
         self.player_list.draw()
         self.gun_list.draw()
-        self.bullet_list.draw()
         self.breakable.draw()
         self.specials.draw()
         self.walls.draw()
+        self.deadable.draw()
+        self.bullet_list.draw()
 
-        # self.gui_camera.use() <- if theres text on the screen (after it draw batch)
+        self.gui_camera.use()
+        self.batch.draw()
     
     def on_key_press(self, key, modifiers):
         if key in (arcade.key.LEFT, arcade.key.A):
@@ -141,6 +159,44 @@ class GameView(arcade.View):
             self.world_camera.position, target, CAMERA_LERP
         )
 
+        hit_list: list[arcade.Sprite] = arcade.check_for_collision_with_list(
+            self.hero, self.deadable
+        )
+        if hit_list:
+            arcade.play_sound(self.die_sound)
+            self.respawn_player()
+
+        for sprite in self.bullet_list:
+            _hit_list = arcade.check_for_collision_with_list(
+                sprite, self.walls
+            )
+            if _hit_list:
+                sprite.remove_from_sprite_lists()
+                break
+            hit_list = arcade.check_for_collision_with_list(sprite, self.breakable)
+            if hit_list:
+                sprite.remove_from_sprite_lists()
+            for sp in hit_list:
+                self.breakable.remove(sp)
+                all_sprites = arcade.get_sprites_at_exact_point(
+                    (sp.center_x, sp.center_y), self.collision_list
+                )
+                for _sp in all_sprites:
+                    _sp.remove_from_sprite_lists()
+
+        hit_bottles = arcade.check_for_collision_with_list(
+            self.hero, self.specials
+        )
+        for bottle in hit_bottles:
+            bottle.remove_from_sprite_lists()
+            self.count += 1
+            self.text.text = f'Score: {self.count}'
+
+
+    def respawn_player(self):
+        self.hero.center_x = 48
+        self.hero.center_y = 200
+
     def on_mouse_motion(self, x: int, y: int, dx: int, dy: int):
         gun_x = self.gun.center_x
         gun_y = self.gun.center_y
@@ -153,4 +209,8 @@ class GameView(arcade.View):
     
     def on_mouse_press(self, x, y, button, modifiers):
         bullet = self.gun.shoot()
+        if self.hero.direction == SpriteDirection.LEFT:
+            bullet.angle = 180 + bullet.angle
+            bullet.change_x = -bullet.change_x
+            bullet.change_y = -bullet.change_y
         self.bullet_list.append(bullet)
