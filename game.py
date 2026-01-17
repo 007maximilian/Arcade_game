@@ -144,8 +144,10 @@ class GameView(arcade.View):
     def on_mouse_motion(self, x: int, y: int, dx: int, dy: int):
         gun_x = self.gun.center_x
         gun_y = self.gun.center_y
-        x_diff = x - gun_x
-        y_diff = y - gun_y
+        abs_x = self.world_camera.position[0] - self.width / 2 + x
+        abs_y = self.world_camera.position[1] - self.height / 2 + y
+        x_diff = abs_x - gun_x
+        y_diff = abs_y - gun_y
         angle = math.atan2(y_diff, x_diff)
         self.gun.rotate(angle)
     
