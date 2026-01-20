@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="90" height="20" tilewidth="48" tileheight="48" infinite="0" nextlayerid="10" nextobjectid="1">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="90" height="20" tilewidth="48" tileheight="48" infinite="0" nextlayerid="12" nextobjectid="1">
  <tileset firstgid="1" source="../tilesets/tiles_1.tsx"/>
  <layer id="5" name="deadable" width="90" height="20">
   <data encoding="base64" compression="zlib">
@@ -16,9 +16,14 @@
    eJzt1DENADAMwLAAWfnT3DsGlSYbQa4UAAAAAACvqc52BLBqvICPXZtiAJA=
   </data>
  </layer>
- <layer id="6" name="turrets" width="90" height="20">
+ <layer id="6" name="turrets_left" width="90" height="20">
   <data encoding="base64" compression="zlib">
    eJztzgENAAAIA6CHsX9GY9w5SEACAAAAAABcNe0A8M4CuIAAJQ==
+  </data>
+ </layer>
+ <layer id="10" name="turrets_right" width="90" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAAAAAAAAvBhwgAAE=
   </data>
  </layer>
  <layer id="9" name="spawn" width="90" height="20">
