@@ -8,7 +8,7 @@
  </layer>
  <layer id="3" name="breakable" width="90" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt07EJACAMAEHXcP9FbWzFKBIU7yBd0jykFAAAgPvVPqv7deP2Zzrn0DmHzjlOdNZ6LtJp1FbnuFmnSGOd4V3+l580izgF3Q==
+   eJzt0LEJACAMRUHXcP9FbWzFKBIU7yBdfvNKAQAAuF/tt/pfN7Y/0zmHzjl0znGis9ZzkU6jtjrHzTpFGusMwAsaQcgFxA==
   </data>
  </layer>
  <layer id="4" name="specials" width="90" height="20">
@@ -33,7 +33,7 @@
  </layer>
  <layer id="8" name="deco" width="90" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt1CEOwDAMA0C/omBkUvv/P46Xr1GVOxIYy8AJAAAAANxvVAdo4qkOcMBMsop+j+3yDz2fcXO/b/EWVOuw9d19JyEBYg==
+   eJzt1DEKgEAMBMB9xYE2gv7/j9eKvReOzDRJlyXFJgAAAACwv1EdoImzOsACd5Kn6Pb4TP7hz2vs9t/jtV/FXVCtQ9d3NwFwkQF7
   </data>
  </layer>
  <layer id="7" name="walls" width="90" height="20">
@@ -43,7 +43,7 @@
  </layer>
  <layer id="2" name="collision" width="90" height="20">
   <data encoding="base64" compression="zlib">
-   eJztlkEKwCAMBPMLqf7/n71YsKKYqpsq7sCelCQdqihCCCGEEILF/z3AIdCzDfRsQ8nzFaPlKoS82cmzA9W1YHXPIcbTM8yzj44l8byra5TnUdc+m80d6rnmdobn3LEc6lnj+KvnkN0RORae0bUDKCU0+1f0PNrbJed0dlLSd0Nrf+1e7nWt+QdadVvrrfM7Mj+Sml9tevvN6j97PgTob7T0+fS7AUAzGsE=
+   eJztltEKwCAIRf2LqP7/P/fSwEUxV+qK7oH7FmqHTSICAAAAALAl/T3AIcCzD/DsQ8tzLJESGwFPdvIcjOp6sLrnXJLg2cxzKo6Jed7VtZXnWdepmi0c6rnnVsNz7ZgO9Sxx/NVzrnZEjYdn69rZKC0k51f0PNs7sP9UOxz+bng739vLo64l38BbXQ3PK+6+nl9pRvtp9deezwLrO3r6vPtd9rQaqA==
   </data>
  </layer>
 </map>
