@@ -186,11 +186,11 @@ class GameView(arcade.View):
             self.gun_list.update()
             self.bullet_list.update()
             for turret in self.turret_left:
-                response: None | arcade.Sprite = turret.update(delta_time)
+                response: None | arcade.Sprite = turret.update(delta_time, self.hero.center_x, self.hero.center_y)
                 if response is not None:
                     self.turret_bullets.append(response)
             for turret in self.turret_right:
-                response: None | arcade.Sprite = turret.update(delta_time)
+                response: None | arcade.Sprite = turret.update(delta_time, self.hero.center_x, self.hero.center_y)
                 if response is not None:
                     self.turret_bullets.append(response)
 

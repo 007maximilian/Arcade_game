@@ -59,4 +59,3 @@ class Pistol(Gun):
                         x=self.center_x + self.width // 2 * math.cos(360 - angle),
                         y=self.center_y + self.height // 2 * math.sin(360 - angle))
         return bullet
-        
