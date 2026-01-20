@@ -33,7 +33,7 @@
  </layer>
  <layer id="7" name="walls" width="90" height="20">
   <data encoding="base64" compression="zlib">
-   eJztllEKACEIBb1FYPe/5/60ILJRlJqxb8A/URtKIgIAAAAA8IVPD/AT4DkGeI4BnmO4yXM5PcAG2T3XFgzPbnBzTMLzra6zemY1W4Fnc7RjgmczqtoRmgjP3rWrU3wxk5/R827vIt6pdUjkv2GU39vLq65n7sCoroXnjLuv53c2VvtZ9beezwPvM0b6fPs90QwU5Q==
+   eJztlkEKwCAMBPOLQPz/P3uxEEJFad2odAdyC2YdJChCCCGEEILFVgf4CfScAz3nQM949DDPujrAS07wXGoZPcOw6lic5xNd7+zZQjal5+lEx0LP0yhhR0QyPKPOvnMXUD0x0r+j5y+z1b1pRHn8v6HX39rLb12PvIHeuTM877j7Wn5HK3seOh+CzHtmeb0A92UV4g==
   </data>
  </layer>
  <layer id="2" name="collision" width="90" height="20">
