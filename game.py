@@ -10,6 +10,7 @@ from enums import SpriteDirection
 from guns import Pistol
 import math
 from pyglet.graphics import Batch
+from turrets import Turret
 
 
 class GameView(arcade.View):
@@ -33,6 +34,9 @@ class GameView(arcade.View):
         self.breakable = arcade.SpriteList()
         self.deadable = arcade.SpriteList()
         self.specials = arcade.SpriteList()
+        self.turret_bullets = arcade.SpriteList()
+        self.turret_left = arcade.SpriteList()
+        self.turret_right = arcade.SpriteList()
 
         self.setup()
     
@@ -58,8 +62,20 @@ class GameView(arcade.View):
         self.breakable = self.tilemap.sprite_lists['breakable']
         self.walls = self.tilemap.sprite_lists['walls']
         self.decorations = self.tilemap.sprite_lists['deco']
-        self.turret_left = self.tilemap.sprite_lists['turrets_left']
-        self.turret_right = self.tilemap.sprite_lists['turrets_right']
+        turret_left = self.tilemap.sprite_lists['turrets_left']
+        turret_right = self.tilemap.sprite_lists['turrets_right']
+
+        for sprite in turret_left:
+            turret = Turret(SpriteDirection.LEFT, self.hero)
+            turret.center_x = sprite.center_x
+            turret.center_y = sprite.center_y
+            self.turret_left.append(turret)
+
+        for sprite in turret_right:
+            turret = Turret(SpriteDirection.RIGHT, self.hero)
+            turret.center_x = sprite.center_x
+            turret.center_y = sprite.center_y
+            self.turret_right.append(turret)
 
         self.engine = arcade.PhysicsEnginePlatformer(
             self.hero,
@@ -76,7 +92,14 @@ class GameView(arcade.View):
         self.text = arcade.Text(
             f'Count: {self.count}',
             10, SCREEN_HEIGHT - 30,
-            arcade.color.RED,
+            arcade.color.LIGHT_GREEN,
+            20,
+            batch=self.batch
+        )
+        self.health_bar = arcade.Text(
+            f'Health: {self.hero.health}',
+            10, SCREEN_HEIGHT - 60,
+            arcade.color.LIGHT_GREEN,
             20,
             batch=self.batch
         )
@@ -86,6 +109,9 @@ class GameView(arcade.View):
 
         self.world_camera.use()
         self.decorations.draw()
+        self.turret_left.draw()
+        self.turret_right.draw()
+        self.turret_bullets.draw()
         self.player_list.draw()
         self.gun_list.draw()
         self.breakable.draw()
@@ -93,8 +119,6 @@ class GameView(arcade.View):
         self.walls.draw()
         self.deadable.draw()
         self.bullet_list.draw()
-        self.turret_left.draw()
-        self.turret_right.draw()
 
         self.gui_camera.use()
         self.batch.draw()
@@ -161,6 +185,16 @@ class GameView(arcade.View):
             self.player_list.update()
             self.gun_list.update()
             self.bullet_list.update()
+            for turret in self.turret_left:
+                response: None | arcade.Sprite = turret.update(delta_time)
+                if response is not None:
+                    self.turret_bullets.append(response)
+            for turret in self.turret_right:
+                response: None | arcade.Sprite = turret.update(delta_time)
+                if response is not None:
+                    self.turret_bullets.append(response)
+
+            self.turret_bullets.update()
 
             target_x = self.hero.center_x
             target_y = self.hero.center_y
