@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="90" height="20" tilewidth="48" tileheight="48" infinite="0" nextlayerid="10" nextobjectid="1">
+ <tileset firstgid="1" source="../tilesets/tiles_1.tsx"/>
+ <layer id="5" name="deadable" width="90" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt0LENACAMA7BewgP8/x9iR10qKIMtZY6SCAAAAAAAADLz01SNQ7K9t3X/2bE5HndtC1gSDog=
+  </data>
+ </layer>
+ <layer id="3" name="breakable" width="90" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt07EJACAMAEHXcP9FbWzFKBIU7yBd0jykFAAAgPvVPqv7deP2Zzrn0DmHzjlOdNZ6LtJp1FbnuFmnSGOd4V3+l580izgF3Q==
+  </data>
+ </layer>
+ <layer id="4" name="specials" width="90" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt1DENADAMwLAAWfnT3DsGlSYbQa4UAAAAAACvqc52BLBqvICPXZtiAJA=
+  </data>
+ </layer>
+ <layer id="6" name="turrets" width="90" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztzgENAAAIA6CHsX9GY9w5SEACAAAAAABcNe0A8M4CuIAAJQ==
+  </data>
+ </layer>
+ <layer id="9" name="spawn" width="90" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztzjEBAAAMAiADrX++xfAQEpAAAAAAAGy6dgAACh5QLwAt
+  </data>
+ </layer>
+ <layer id="8" name="deco" width="90" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt1CEOwDAMA0C/omBkUvv/P46Xr1GVOxIYy8AJAAAAANxvVAdo4qkOcMBMsop+j+3yDz2fcXO/b/EWVOuw9d19JyEBYg==
+  </data>
+ </layer>
+ <layer id="7" name="walls" width="90" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztllEKACEIBb1FYPe/5/60ILJRlJqxb8A/URtKIgIAAAAA8IVPD/AT4DkGeI4BnmO4yXM5PcAG2T3XFgzPbnBzTMLzra6zemY1W4Fnc7RjgmczqtoRmgjP3rWrU3wxk5/R827vIt6pdUjkv2GU39vLq65n7sCoroXnjLuv53c2VvtZ9beezwPvM0b6fPs90QwU5Q==
+  </data>
+ </layer>
+ <layer id="2" name="collision" width="90" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztlkEKwCAMBPMLqf7/n71YsKKYqpsq7sCelCQdqihCCCGEEILF/z3AIdCzDfRsQ8nzFaPlKoS82cmzA9W1YHXPIcbTM8yzj44l8byra5TnUdc+m80d6rnmdobn3LEc6lnj+KvnkN0RORae0bUDKCU0+1f0PNrbJed0dlLSd0Nrf+1e7nWt+QdadVvrrfM7Mj+Sml9tevvN6j97PgTob7T0+fS7AUAzGsE=
+  </data>
+ </layer>
+</map>
