@@ -31,6 +31,7 @@ class Pistol(Gun):
     def __init__(self, owner):
         super().__init__(owner, 48, 48, 'assets/spritesheets/glock_pistol.png', 4, 4)
         self.radius = self.width // 2
+        self.damage = 10
 
     def update(self, delta_time):
         self.direction = self.owner.direction

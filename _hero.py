@@ -12,6 +12,7 @@ class Hero(arcade.Sprite):
         self.direction = SpriteDirection.RIGHT
         self.keys = set()
         self.gun: None | Pistol = None
+        self.health = 100
     
     def update(self, delta_time):
         if self.change_x < 0 and self.direction == SpriteDirection.RIGHT:

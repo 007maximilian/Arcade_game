@@ -14,7 +14,7 @@ from pyglet.graphics import Batch
 
 class GameView(arcade.View):
     def on_show_view(self): # jus like init in arcade.View
-        arcade.set_background_color(arcade.color.GRAY)
+        arcade.set_background_color(arcade.color.ONYX)
         self.player_list = arcade.SpriteList()
         self.collision_list = arcade.SpriteList()
         self.gun_list = arcade.SpriteList()
@@ -51,12 +51,15 @@ class GameView(arcade.View):
         self.hero.gun = self.gun
         self.gun.rotate(0)
 
-        self.tilemap = arcade.load_tilemap("assets/maps/test_map.tmx", scaling=TILE_SCALING)
+        self.tilemap = arcade.load_tilemap("assets/maps/training map.tmx", scaling=TILE_SCALING)
         self.collision_list = self.tilemap.sprite_lists['collision']
         self.deadable = self.tilemap.sprite_lists['deadable']
         self.specials = self.tilemap.sprite_lists['specials']
         self.breakable = self.tilemap.sprite_lists['breakable']
         self.walls = self.tilemap.sprite_lists['walls']
+        self.decorations = self.tilemap.sprite_lists['deco']
+        self.turret_left = self.tilemap.sprite_lists['turrets_left']
+        self.turret_right = self.tilemap.sprite_lists['turrets_right']
 
         self.engine = arcade.PhysicsEnginePlatformer(
             self.hero,
@@ -73,7 +76,7 @@ class GameView(arcade.View):
         self.text = arcade.Text(
             f'Count: {self.count}',
             10, SCREEN_HEIGHT - 30,
-            arcade.color.GOLD,
+            arcade.color.RED,
             20,
             batch=self.batch
         )
@@ -82,6 +85,7 @@ class GameView(arcade.View):
         self.clear()
 
         self.world_camera.use()
+        self.decorations.draw()
         self.player_list.draw()
         self.gun_list.draw()
         self.breakable.draw()
@@ -89,6 +93,8 @@ class GameView(arcade.View):
         self.walls.draw()
         self.deadable.draw()
         self.bullet_list.draw()
+        self.turret_left.draw()
+        self.turret_right.draw()
 
         self.gui_camera.use()
         self.batch.draw()
