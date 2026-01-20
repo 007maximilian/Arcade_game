@@ -196,6 +196,36 @@ class GameView(arcade.View):
 
             self.turret_bullets.update()
 
+            for bullet in self.turret_bullets:
+                hit = arcade.check_for_collision(
+                    bullet, self.hero
+                )
+                if hit:
+                    self.hero.health -= bullet.damage
+                    self.health_bar.text = f'Health: {self.hero.health}'
+                    if self.hero.health <= 0:
+                        self.health_bar.text = 'Health: 0'
+                        arcade.play_sound(self.die_sound)
+                        self.respawn_player()
+                    bullet.remove_from_sprite_lists()
+                    del bullet
+
+            for bullet in self.bullet_list:
+                hit_list = arcade.check_for_collision_with_list(
+                    bullet, self.turret_left
+                ) + arcade.check_for_collision_with_list(
+                    bullet, self.turret_right
+                )
+                if hit_list:
+                    bullet.remove_from_sprite_lists()
+                for turret in hit_list:
+                    turret.health -= bullet.damage
+                    if turret.health <= 0:
+                        turret.remove_from_sprite_lists()
+                        del turret
+                if hit_list:
+                    del bullet
+
             target_x = self.hero.center_x
             target_y = self.hero.center_y
 
@@ -248,6 +278,8 @@ class GameView(arcade.View):
         if self.state == 'playing':
             self.hero.center_x = 48
             self.hero.center_y = 200
+            self.hero.health = 100
+            self.health_bar.text = f'Health: {self.hero.health}'
 
     def on_mouse_motion(self, x: int, y: int, dx: int, dy: int):
         if self.state == 'playing':

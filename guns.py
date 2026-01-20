@@ -57,5 +57,5 @@ class Pistol(Gun):
         angle = math.radians(self.angle)
         bullet = Bullet(texture='assets/sprites/bullet-1.png', angle=360 - self.angle,
                         x=self.center_x + self.width // 2 * math.cos(360 - angle),
-                        y=self.center_y + self.height // 2 * math.sin(360 - angle))
+                        y=self.center_y + self.height // 2 * math.sin(360 - angle), damage=10)
         return bullet

@@ -8,7 +8,7 @@ import math
 class Turret(arcade.Sprite):
     def __init__(self, direction, target):
         super().__init__()
-        self.health = 20
+        self.health = 100
         self.damage = 5
         self.timer = 0
         self.direction = direction
@@ -26,14 +26,13 @@ class Turret(arcade.Sprite):
         if self.direction == SpriteDirection.RIGHT:
             return Bullet(texture='assets/sprites/bullet-1.png', angle=math.degrees(math.atan2(
                 self.target.center_y - self.center_y, self.target.center_x - self.center_x
-            )), x=self.center_x + self.width // 2, y=self.center_y)
+            )), x=self.center_x + self.width // 2, y=self.center_y, damage=10)
         else:
             angle = math.degrees(math.atan2(
                 self.target.center_y - self.center_y, self.target.center_x - self.center_x
             ))
-            print(angle)
             return Bullet(texture='assets/sprites/bullet-1.png', angle=angle,
-                          x=self.center_x - self.width // 2, y=self.center_y)
+                          x=self.center_x - self.width // 2, y=self.center_y, damage=self.damage)
 
     def update(self, delta_time, target_x, target_y):
         self.target = arcade.Sprite()
