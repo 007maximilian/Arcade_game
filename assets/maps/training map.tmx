@@ -33,12 +33,12 @@
  </layer>
  <layer id="8" name="deco" width="90" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt1iEKwEAMBMB9xUFrDtr//7G+quYuhcyYiIgsESEJAACsdVYHAABaGNUBmujw211J7qLZ41VZw573+ON+j4+9WXwLqnW49d09iFMBrg==
+   eJzt1jEKwEAIBMB9xUHSHCT//2PakP5OgjONdi4WYgIAAGud1QEAgBZGdYAmOvx2V5K7aPb4VNaw5z3+tt/j1c/iW1Ctw63v7gE8JwGV
   </data>
  </layer>
  <layer id="7" name="walls" width="90" height="20">
   <data encoding="base64" compression="zlib">
-   eJztlm0KgCAQRPcWgnb/c0ZgIEvZoo66NA/2V35Mr0UTIYQQQgjBElcH+An0PAd6ngM94wnOPIfVARrx4DnlivQMI2bHUnj26Hpnz1FlC6o8satn7VgcO5bNPCd1Rmh0PyN8o77hnTeB6gnLeKvn0V5q6/XsF4qeRlRJ+d/wNb52Lrf4tvTA1zrXs8Pg9G3urveL1e+oPu/dD50Pwcz3nOX1BI5EFs0=
+   eJztlkEKwCAMBPOLgP7/n71YkFBU1NWE7kBuousYgiKEEEIIIVjS7QA/gZ7PQM9noGc8Gsyz3g4wSQTPuVSiZxipOJbKc0TXnj0nk01NRcKrZ+tYAjsWZ56zmREW288I36g3fPNmUH0xsn7U824vrf1WztOqpxFVU/8beutbc3nG90gP9PbZ4dnj7Bv1u6vPV89D50Nw8p6nvD5/CBbI
   </data>
  </layer>
  <layer id="2" name="collision" width="90" height="20">
