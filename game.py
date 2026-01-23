@@ -11,6 +11,7 @@ from guns import Pistol
 import math
 from pyglet.graphics import Batch
 from turrets import Turret
+from effects import make_ring
 
 
 class GameView(arcade.View):
@@ -65,6 +66,11 @@ class GameView(arcade.View):
         turret_left = self.tilemap.sprite_lists['turrets_left']
         turret_right = self.tilemap.sprite_lists['turrets_right']
 
+
+        self.texture = arcade.load_texture(
+            'assets/ui/background_game_test.png'
+        )
+
         for sprite in turret_left:
             turret = Turret(SpriteDirection.LEFT, self.hero)
             turret.center_x = sprite.center_x
@@ -106,6 +112,15 @@ class GameView(arcade.View):
     
     def on_draw(self):
         self.clear()
+        arcade.draw_texture_rect(
+            self.texture,
+            arcade.rect.XYWH(
+                SCREEN_WIDTH // 2,
+                SCREEN_HEIGHT // 2,
+                SCREEN_WIDTH,
+                SCREEN_HEIGHT
+            )
+        )
 
         self.world_camera.use()
         self.decorations.draw()
@@ -221,8 +236,7 @@ class GameView(arcade.View):
                 for turret in hit_list:
                     turret.health -= bullet.damage
                     if turret.health <= 0:
-                        turret.remove_from_sprite_lists()
-                        del turret
+                        turret.dead = True
                 if hit_list:
                     del bullet
 
