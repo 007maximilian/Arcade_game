@@ -18,7 +18,7 @@
  </layer>
  <layer id="6" name="turrets_left" width="90" height="20">
   <data encoding="base64" compression="zlib">
-   eJztzgENAAAIA6CHsX9GY9w5SEACAAAAAABcNe0A8M4CuIAAJQ==
+   eJztzgENAAAIA6AHsn8+Y9w5SEACAAAAAABcNe0A8M4C20AALQ==
   </data>
  </layer>
  <layer id="10" name="turrets_right" width="90" height="20">

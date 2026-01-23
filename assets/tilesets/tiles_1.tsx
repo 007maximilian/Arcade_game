@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.10" tiledversion="1.11.2" name="tiles_1" tilewidth="48" tileheight="48" tilecount="22" columns="0">
+<tileset version="1.10" tiledversion="1.11.2" name="tiles_1" tilewidth="48" tileheight="48" tilecount="23" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="25">
   <image source="../baked/metall_brick.png" width="48" height="48"/>
@@ -40,6 +40,12 @@
  <tile id="35">
   <image source="../baked/turret_base.png" width="48" height="48"/>
  </tile>
+ <tile id="41">
+  <image source="../baked/turret_mussle.png" width="48" height="48"/>
+ </tile>
+ <tile id="44">
+  <image source="../baked/turret_all.png" width="48" height="48"/>
+ </tile>
  <tile id="31">
   <image source="../baked/switch_1.png" width="48" height="48"/>
  </tile>
@@ -57,9 +63,6 @@
  </tile>
  <tile id="40">
   <image source="../baked/wires_a_2.png" width="48" height="48"/>
- </tile>
- <tile id="41">
-  <image source="../baked/turret_mussle.png" width="48" height="48"/>
  </tile>
  <tile id="42">
   <image source="../baked/steotypical_green_ooze.png" width="48" height="48"/>
