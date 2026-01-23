@@ -33,7 +33,7 @@
  </layer>
  <layer id="8" name="deco" width="90" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt1jEKwEAIBMB9xUHSHCT//2PakP5OgjONdi4WYgIAAGud1QEAgBZGdYAmOvx2V5K7aPb4VNaw5z3+tt/j1c/iW1Ctw63v7gE8JwGV
+   eJzt1iEKwEAMBMB9xUFrDtr//7G+quYuhcyYiIgsESEJAACsdVYHAABaGNUBmujw211J7qLZ41VZw573+ON+j4+9WXwLqnW49d09iFMBrg==
   </data>
  </layer>
  <layer id="7" name="walls" width="90" height="20">
