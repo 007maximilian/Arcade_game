@@ -44,5 +44,6 @@ class MenuView(arcade.View):
         self.manager.draw()
     
     def change_view(self, event):
+        self.manager.disable()
         game_view = GameView()
         self.window.show_view(game_view)

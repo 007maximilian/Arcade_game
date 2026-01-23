@@ -32,6 +32,11 @@ class Pistol(Gun):
         super().__init__(owner, 48, 48, 'assets/spritesheets/glock_pistol.png', 4, 4)
         self.radius = self.width // 2
         self.damage = 10
+        self.shooting = False
+        self.changed_frame = False
+        self.timer = 0
+        self.anim_duration = 0.05
+        self.curr_frame = 0
 
     def update(self, delta_time):
         self.direction = self.owner.direction
@@ -41,6 +46,18 @@ class Pistol(Gun):
         else:
             self.center_x = self.owner.center_x - self.offset_x + 23
         self.center_y = self.owner.center_y + self.offset_y
+        if self.shooting:
+            self.timer += delta_time
+            if self.timer >= self.anim_duration:
+                self.timer = 0
+                self.curr_frame += 1
+                self.curr_frame %= len(self.textures)
+                self.curr_index = self.curr_frame
+                self.texture = self.textures[self.curr_frame]
+                self.changed_frame = True
+            if self.curr_frame == 0 and self.changed_frame:
+                self.shooting = False
+                self.changed_frame = False
 
     def rotate(self, angle):
         if self.direction == SpriteDirection.RIGHT:
@@ -58,4 +75,5 @@ class Pistol(Gun):
         bullet = Bullet(texture='assets/sprites/bullet-1.png', angle=360 - self.angle,
                         x=self.center_x + self.width // 2 * math.cos(360 - angle),
                         y=self.center_y + self.height // 2 * math.sin(360 - angle), damage=10)
+        self.shooting = True
         return bullet

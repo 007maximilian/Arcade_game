@@ -214,7 +214,7 @@ class GameView(arcade.View):
 
             for bullet in self.turret_bullets:
                 with_walls = arcade.check_for_collision_with_list(
-                    bullet, self.walls
+                    bullet, self.collision_list
                 )
                 if with_walls:
                     bullet.remove_from_sprite_lists()
@@ -294,7 +294,9 @@ class GameView(arcade.View):
             for bottle in hit_bottles:
                 bottle.remove_from_sprite_lists()
                 self.count += 1
+                self.hero.health += 10
                 self.text.text = f'Score: {self.count}'
+                self.health_bar.text = f'Health: {self.hero.health}'
 
         emitters_copy = self.emitters.copy()  # Защищаемся от мутаций списка
         for e in emitters_copy:
