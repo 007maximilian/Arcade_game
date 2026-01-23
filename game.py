@@ -213,6 +213,13 @@ class GameView(arcade.View):
             self.turret_bullets.update()
 
             for bullet in self.turret_bullets:
+                with_walls = arcade.check_for_collision_with_list(
+                    bullet, self.walls
+                )
+                if with_walls:
+                    bullet.remove_from_sprite_lists()
+                    del bullet
+                    break
                 hit = arcade.check_for_collision(
                     bullet, self.hero
                 )

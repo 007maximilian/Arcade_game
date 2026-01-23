@@ -14,7 +14,7 @@ class Turret(arcade.Sprite):
         self.direction = direction
         self.bullets = arcade.SpriteList()
         self.target: arcade.Sprite = target
-        self.switch_animation_timer = 0.05
+        self.switch_animation_timer = 0.08
         self.dead = False
         self.anim_frames = arcade.SpriteSheet(
             'assets/spritesheets/turret_crash.png'
