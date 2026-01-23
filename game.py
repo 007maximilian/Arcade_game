@@ -38,6 +38,7 @@ class GameView(arcade.View):
         self.turret_bullets = arcade.SpriteList()
         self.turret_left = arcade.SpriteList()
         self.turret_right = arcade.SpriteList()
+        self.emitters = []
 
         self.setup()
     
@@ -46,8 +47,6 @@ class GameView(arcade.View):
         self.hero.center_x = 48
         self.hero.center_y = 200
         self.player_list.append(self.hero)
-        # someday need to write sth like tilemap loading...
-        # initialize better after tilemaps
         self.world_height = 5000
         self.world_width = 5000
 
@@ -127,6 +126,8 @@ class GameView(arcade.View):
         self.turret_left.draw()
         self.turret_right.draw()
         self.turret_bullets.draw()
+        for e in self.emitters:
+            e.draw()
         self.player_list.draw()
         self.gun_list.draw()
         self.breakable.draw()
@@ -216,6 +217,7 @@ class GameView(arcade.View):
                     bullet, self.hero
                 )
                 if hit:
+                    self.emitters.append(make_ring(self.hero.center_x, self.hero.center_y))
                     self.hero.health -= bullet.damage
                     self.health_bar.text = f'Health: {self.hero.health}'
                     if self.hero.health <= 0:
@@ -286,6 +288,13 @@ class GameView(arcade.View):
                 bottle.remove_from_sprite_lists()
                 self.count += 1
                 self.text.text = f'Score: {self.count}'
+
+        emitters_copy = self.emitters.copy()  # Защищаемся от мутаций списка
+        for e in emitters_copy:
+            e.update(delta_time)
+        for e in emitters_copy:
+            if e.can_reap():  # Готов к уборке?
+                self.emitters.remove(e)
 
 
     def respawn_player(self):

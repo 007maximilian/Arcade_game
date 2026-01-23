@@ -23,7 +23,7 @@ def make_ring(x, y, count=40, radius=5.0):
         center_xy=(x, y),
         emit_controller=EmitBurst(count),
         particle_factory=lambda e: FadeParticle(
-            filename_or_texture=random.choice(SPARK_TEX),
+            filename_or_texture=arcade.make_soft_circle_texture(60, arcade.color.RED),
             change_xy=arcade.math.rand_on_circle((0.0, 0.0), radius),
             lifetime=random.uniform(0.8, 1.4),
             start_alpha=255, end_alpha=0,
