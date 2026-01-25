@@ -15,7 +15,7 @@ class MenuView(arcade.View):
         self.but_texture, self.but_texture_hovered = arcade.SpriteSheet(
             'assets/ui/button_start.png'
         ).get_texture_grid(
-            (20, 6),
+            (300, 90),
             columns=2,
             count=2
         )
@@ -30,8 +30,7 @@ class MenuView(arcade.View):
         )
         self.button = UITextureButton(
             texture=self.but_texture,
-            texture_hovered=self.but_texture_hovered,
-            scale=15.0
+            texture_hovered=self.but_texture_hovered
         )
         self.button.on_click = self.change_view
         self.box_layout.add(self.label)
