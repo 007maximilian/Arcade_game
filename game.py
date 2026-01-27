@@ -285,6 +285,7 @@ class GameView(arcade.View):
                 if hit_list:
                     bullet.remove_from_sprite_lists()
                 for turret in hit_list:
+                    self.emitters.append(make_ring(turret.center_x, turret.center_y, color=arcade.color.DARK_GRAY))
                     turret.health -= bullet.damage
                     if turret.health <= 0:
                         turret.dead = True
