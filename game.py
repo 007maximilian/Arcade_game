@@ -12,11 +12,12 @@ import math
 from pyglet.graphics import Batch
 from turrets import Turret
 from effects import make_ring
+from pause import PauseView
+from arcade.gui import UILabel, UITextureButton, UIManager, UIBoxLayout, UIAnchorLayout
 
 
 class GameView(arcade.View):
-    def on_show_view(self): # jus like init in arcade.View
-        arcade.set_background_color(arcade.color.ONYX)
+    def on_show_view(self):
         self.player_list = arcade.SpriteList()
         self.collision_list = arcade.SpriteList()
         self.gun_list = arcade.SpriteList()
@@ -109,36 +110,67 @@ class GameView(arcade.View):
             20,
             batch=self.batch
         )
+
+
+        self.manager = UIManager()
+        self.cont_button, self.cont_button_h = arcade.SpriteSheet(
+            'assets/ui/button_cont.png'
+        ).get_texture_grid(
+            (750, 180),
+            columns=2,
+            count=2
+        )
+        self.anchor_layout = UIAnchorLayout()
+        self.box_layout = UIBoxLayout(vertical=True, space_between=20)
+        self.button = UITextureButton(
+            texture=self.cont_button,
+            texture_hovered=self.cont_button_h
+        )
+        self.label = UILabel(
+            font_size=50,
+            text_color=arcade.color.WHITE,
+            text='paused',
+            width=200,
+            align='center'
+        )
+        self.button.on_click = self.return_game
+        self.box_layout.add(self.label)
+        self.box_layout.add(self.button)
+        self.anchor_layout.add(self.box_layout)
+        self.manager.add(self.anchor_layout)
     
     def on_draw(self):
         self.clear()
-        arcade.draw_texture_rect(
-            self.texture,
-            arcade.rect.XYWH(
-                SCREEN_WIDTH // 2,
-                SCREEN_HEIGHT // 2,
-                SCREEN_WIDTH,
-                SCREEN_HEIGHT
+        if self.state == 'playing':
+            arcade.draw_texture_rect(
+                self.texture,
+                arcade.rect.XYWH(
+                    SCREEN_WIDTH // 2,
+                    SCREEN_HEIGHT // 2,
+                    SCREEN_WIDTH,
+                    SCREEN_HEIGHT
+                )
             )
-        )
 
-        self.world_camera.use()
-        self.decorations.draw()
-        self.turret_left.draw()
-        self.turret_right.draw()
-        self.turret_bullets.draw()
-        for e in self.emitters:
-            e.draw()
-        self.player_list.draw()
-        self.gun_list.draw()
-        self.breakable.draw()
-        self.specials.draw()
-        self.walls.draw()
-        self.deadable.draw()
-        self.bullet_list.draw()
+            self.world_camera.use()
+            self.decorations.draw()
+            self.turret_left.draw()
+            self.turret_right.draw()
+            self.turret_bullets.draw()
+            for e in self.emitters:
+                e.draw()
+            self.player_list.draw()
+            self.gun_list.draw()
+            self.breakable.draw()
+            self.specials.draw()
+            self.walls.draw()
+            self.deadable.draw()
+            self.bullet_list.draw()
 
-        self.gui_camera.use()
-        self.batch.draw()
+            self.gui_camera.use()
+            self.batch.draw()
+        else:
+            self.manager.draw()
     
     def on_key_press(self, key, modifiers):
         if self.state == 'playing':
@@ -153,11 +185,9 @@ class GameView(arcade.View):
                 self.jump_buffer_timer = JUMP_BUFFER
 
         if (key == arcade.key.P or key == arcade.key.ESCAPE) and self.state == 'playing':
+            self.manager.enable()
             self.state = 'pause'
             return
-
-        if self.state == 'pause':
-            self.state = 'playing'
 
     def on_key_release(self, key, modifiers):
         if self.state == 'playing':
@@ -333,3 +363,7 @@ class GameView(arcade.View):
                 bullet.change_x = -bullet.change_x
                 bullet.change_y = -bullet.change_y
             self.bullet_list.append(bullet)
+    
+    def return_game(self, event):
+        self.manager.disable()
+        self.state = 'playing'
