@@ -43,18 +43,6 @@ class GameView(arcade.View):
         self.setup()
     
     def setup(self):
-        self.hero = Hero()
-        self.hero.center_x = 48
-        self.hero.center_y = 200
-        self.player_list.append(self.hero)
-        self.world_height = 5000
-        self.world_width = 5000
-
-        self.gun = Pistol(self.hero)
-        self.gun_list.append(self.gun)
-        self.hero.gun = self.gun
-        self.gun.rotate(0)
-
         self.tilemap = arcade.load_tilemap("assets/maps/training map.tmx", scaling=TILE_SCALING)
         self.collision_list = self.tilemap.sprite_lists['collision']
         self.deadable = self.tilemap.sprite_lists['deadable']
@@ -63,8 +51,21 @@ class GameView(arcade.View):
         self.walls = self.tilemap.sprite_lists['walls']
         self.decorations = self.tilemap.sprite_lists['deco']
         turret_left = self.tilemap.sprite_lists['turrets_left']
+        self.spawn = self.tilemap.sprite_lists['spawn']
         turret_right = self.tilemap.sprite_lists['turrets_right']
+        self.spawn: arcade.Sprite = self.spawn[0]
 
+        self.hero = Hero()
+        self.hero.center_x = self.spawn.center_x
+        self.hero.center_y = self.spawn.center_y
+        self.player_list.append(self.hero)
+        self.world_height = 5000
+        self.world_width = 5000
+
+        self.gun = Pistol(self.hero)
+        self.gun_list.append(self.gun)
+        self.hero.gun = self.gun
+        self.gun.rotate(0)
 
         self.texture = arcade.load_texture(
             'assets/ui/background_game.png'
@@ -308,8 +309,8 @@ class GameView(arcade.View):
 
     def respawn_player(self):
         if self.state == 'playing':
-            self.hero.center_x = 48
-            self.hero.center_y = 200
+            self.hero.center_x = self.spawn.center_x
+            self.hero.center_y = self.spawn.center_y
             self.hero.health = 100
             self.health_bar.text = f'Health: {self.hero.health}'
 
