@@ -13,12 +13,12 @@
  </layer>
  <layer id="4" name="specials" width="90" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt1jEKADAIA0AfYv//Tdd2KBSKk3dTMFsmIwAAYK787HlnSwCA2daW83Lv4hcFOBX0yQDH
+   eJzt1SEOACAMA0AeUv7/TSyGhAQw7E4tq5tYWwMAgLpymLPPLYH4BQCl9WnOYv+K/rkj+hy+MQC9pQFT
   </data>
  </layer>
  <layer id="6" name="turrets_left" width="90" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt1MEJADAIA0AH6v7zdQGhtCBKufv6kRASAZBb3Q8AX7Al9WR8ziC73+QmY6bQRYB3NpRpdBKAThu0ZQG5
+   eJzt1csJwCAQQEG7SBP2X1+uBhZEyK6CM+DFz+Uh2hpZnmGQY+yr8/96MKdzDZ1r6FxD53xd5/DPmq3PzkR7b+/Mfiv3FoAvbyincScB2OkFXf8CoQ==
   </data>
  </layer>
  <layer id="10" name="turrets_right" width="90" height="20">
@@ -28,12 +28,12 @@
  </layer>
  <layer id="9" name="spawn" width="90" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt1bENADAIA0EGyQjsPx8NK0SQ6E763p0jAAAAAO47HcAmOT0AHuLL4R8FrxwAnQ==
+   eJztzjEBAAAMAiADrX++xfAQEpAAAAAAAGy6dgAACh5QLwAt
   </data>
  </layer>
  <layer id="8" name="deco" width="90" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt1rEJACAQA8CsYSXo/ju6gGIjiHhXpnpCik8AAHhduX3AB4qeAQC2/Eys1CQtSd9kp9kkwNwAB3wBeA==
+   eJzt1rEJACAQA8CsYSXo/ju6gPKNIMJdmSpFiiQAAEClvS4AAPCB5jdx0JOMJLPIbrNJgL0Fl5ABRg==
   </data>
  </layer>
  <layer id="7" name="walls" width="90" height="20">
