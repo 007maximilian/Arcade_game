@@ -67,7 +67,7 @@ class GameView(arcade.View):
 
 
         self.texture = arcade.load_texture(
-            'assets/ui/background_game_test.png'
+            'assets/ui/background_game.png'
         )
 
         for sprite in turret_left:
