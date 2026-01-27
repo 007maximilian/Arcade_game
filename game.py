@@ -12,10 +12,17 @@ import math
 from pyglet.graphics import Batch
 from turrets import Turret
 from effects import make_ring
-from arcade.gui import UILabel, UITextureButton, UIManager, UIBoxLayout, UIAnchorLayout
+from arcade.gui import UITextureButton, UIManager, UILabel
+from arcade.gui.widgets.layout import UIAnchorLayout, UIBoxLayout
+import json
 
 
 class GameView(arcade.View):
+    def __init__(self, level_file='assets/maps/training map.tmx'):
+        super().__init__()
+        self.file = level_file
+        self.count = 0
+
     def on_show_view(self):
         self.player_list = arcade.SpriteList()
         self.collision_list = arcade.SpriteList()
@@ -43,7 +50,7 @@ class GameView(arcade.View):
         self.setup()
     
     def setup(self):
-        self.tilemap = arcade.load_tilemap("assets/maps/training map.tmx", scaling=TILE_SCALING)
+        self.tilemap = arcade.load_tilemap(self.file, scaling=TILE_SCALING)
         self.collision_list = self.tilemap.sprite_lists['collision']
         self.deadable = self.tilemap.sprite_lists['deadable']
         self.specials = self.tilemap.sprite_lists['specials']
@@ -56,6 +63,7 @@ class GameView(arcade.View):
         self.spawn: arcade.Sprite = self.spawn[0]
 
         self.hero = Hero()
+        print(self.spawn.center_x, self.spawn.center_y)
         self.hero.center_x = self.spawn.center_x
         self.hero.center_y = self.spawn.center_y
         self.player_list.append(self.hero)
@@ -90,8 +98,6 @@ class GameView(arcade.View):
         ) # MAKE PLATFORMS YEE
 
         self.die_sound = arcade.load_sound(':resources:/sounds/hit2.wav')
-
-        self.count = 0
 
         self.batch = Batch()
 
@@ -264,7 +270,9 @@ class GameView(arcade.View):
                     if self.hero.health <= 0:
                         self.health_bar.text = 'Health: 0'
                         arcade.play_sound(self.die_sound)
-                        self.respawn_player()
+                        game_over = GameOverView(self.count)
+                        self.window.show_view(game_over)
+                        return
                     bullet.remove_from_sprite_lists()
                     del bullet
 
@@ -302,7 +310,8 @@ class GameView(arcade.View):
             )
             if hit_list:
                 arcade.play_sound(self.die_sound)
-                self.respawn_player()
+                game_over = GameOverView(self.count)
+                self.window.show_view(game_over)
 
             for sprite in self.bullet_list:
                 _hit_list = arcade.check_for_collision_with_list(
@@ -338,14 +347,12 @@ class GameView(arcade.View):
         for e in emitters_copy:
             if e.can_reap():  # Готов к уборке?
                 self.emitters.remove(e)
+        
 
-
-    def respawn_player(self):
-        if self.state == 'playing':
-            self.hero.center_x = self.spawn.center_x
-            self.hero.center_y = self.spawn.center_y
-            self.hero.health = 100
-            self.health_bar.text = f'Health: {self.hero.health}'
+        if self.file == 'assets/maps/training map.tmx' and self.count == 5:
+            level = GameView('assets/maps/level 2.tmx')
+            level.count = self.count
+            self.window.show_view(level)
 
     def on_mouse_motion(self, x: int, y: int, dx: int, dy: int):
         if self.state == 'playing':
@@ -370,3 +377,97 @@ class GameView(arcade.View):
     def return_game(self, event):
         self.manager.disable()
         self.state = 'playing'
+
+
+class MenuView(arcade.View):
+    def on_show_view(self):
+        self.batch = Batch()
+        arcade.set_background_color(arcade.color.BLACK)
+        self.manager = UIManager()
+        self.manager.enable()
+        self.but_texture, self.but_texture_hovered = arcade.SpriteSheet(
+            'assets/ui/button_start.png'
+        ).get_texture_grid(
+            (300, 90),
+            columns=2,
+            count=2
+        )
+        self.anchor_layout = UIAnchorLayout()
+        self.box_layout = UIBoxLayout(vertical=True, space_between=20)
+        self.label = UILabel(
+            font_size=50,
+            text_color=arcade.color.WHITE,
+            text="unt1tl3d",
+            width=200,
+            align="center"
+        )
+        self.button = UITextureButton(
+            texture=self.but_texture,
+            texture_hovered=self.but_texture_hovered
+        )
+        self.button.on_click = self.change_view
+        self.box_layout.add(self.label)
+        self.box_layout.add(self.button)
+        self.anchor_layout.add(self.box_layout)
+        self.manager.add(self.anchor_layout)
+    
+    def on_draw(self):
+        self.batch.draw()
+        self.manager.draw()
+    
+    def change_view(self, event):
+        self.manager.disable()
+        game_view = GameView()
+        self.window.show_view(game_view)
+
+
+class GameOverView(arcade.View):
+    def __init__(self, score):
+        super().__init__()
+        self.manager = UIManager()
+        self.manager.enable()
+        self.but_t = arcade.SpriteSheet(
+            'assets/ui/button_exit.png'
+        ).get_texture_grid(
+            (300, 90),
+            columns=2,
+            count=2
+        )
+        self.button = UITextureButton(
+            texture=self.but_t[0],
+            texture_hovered=self.but_t[1],
+            x=SCREEN_WIDTH // 2 - 150,
+            y=SCREEN_HEIGHT // 2 - 45
+        )
+        self.manager.add(self.button)
+        self.update_score(score)
+        self.dead_screen = arcade.load_texture(
+            'assets/ui/dead_screen.png'
+        )
+        self.button.on_click = self.menu
+    
+    def update_score(self, score):
+        with open('data/score.json', 'r', encoding='utf-8') as f:
+            data: list = json.loads(f.read())
+        data.append(score)
+        with open('data/score.json', 'w', encoding='utf-8') as f:
+            f.write(json.dumps(data))
+    
+    def on_draw(self):
+        self.clear()
+        arcade.draw_texture_rect(
+            self.dead_screen,
+            arcade.rect.XYWH(
+                SCREEN_WIDTH // 2,
+                SCREEN_HEIGHT // 2,
+                SCREEN_WIDTH,
+                SCREEN_HEIGHT
+            )
+        )
+        self.manager.draw()
+    
+    def menu(self, event):
+        self.clear()
+        self.manager.disable()
+        menu = MenuView()
+        self.window.show_view(menu)

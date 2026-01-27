@@ -1,6 +1,6 @@
 import arcade
 from constants.window import SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE
-from menu import MenuView
+from game import MenuView
 
 window: None | arcade.Window = None
 
