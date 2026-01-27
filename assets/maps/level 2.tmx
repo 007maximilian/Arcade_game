@@ -18,7 +18,7 @@
  </layer>
  <layer id="6" name="turrets_left" width="90" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt1csJwCAQQEG7SBP2X1+uBhZEyK6CM+DFz+Uh2hpZnmGQY+yr8/96MKdzDZ1r6FxD53xd5/DPmq3PzkR7b+/Mfiv3FoAvbyincScB2OkFXf8CoQ==
+   eJzt1LENADAIAzAO4v/7+gBSaRcY7JUFRVEiAGo5/QAALfb6nkF1f8lNxmyhiwD/bCjb6CQAkw5RSAGN
   </data>
  </layer>
  <layer id="10" name="turrets_right" width="90" height="20">
@@ -38,7 +38,7 @@
  </layer>
  <layer id="7" name="walls" width="90" height="20">
   <data encoding="base64" compression="zlib">
-   eJztkksKwCAMBb1FQO9/z9JFIVC1auMPZ+DhwiDJROdgBDK7gUPA8xjwbEvKJ55twXN/RCV2B2lCRe3t0uO5CV9YJ3huxqs8BBWNqFpJBOLknLUE3lg7Ptlzbv4enk/bh6hzNX+7ec71i2c7SmZe0fMMvnr7O/Punq3e7D3zaM/W+6itJfV/AXd4nunsAieaMYU=
+   eJzt11sKgCAQQFF3Iej+9xl9BIOVps34wHth/iTyGFTOkVU+GdJP2uLcJ5z1e/LEWT+c7Xt75+FcLlasPS0Dzk2Fj+s8zs0FMVdRjMyLtel3M875cmYtQ/e0jXd2zu3fwnm380j/h2fyW805d7846/VlzzM6j6h0b3/3vLqz1jWt99zbWfs8atcy9c8CdjiPNDsANFEymQ==
   </data>
  </layer>
  <layer id="2" name="collision" width="90" height="20">
