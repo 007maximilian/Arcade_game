@@ -12,7 +12,6 @@ import math
 from pyglet.graphics import Batch
 from turrets import Turret
 from effects import make_ring
-from pause import PauseView
 from arcade.gui import UILabel, UITextureButton, UIManager, UIBoxLayout, UIAnchorLayout
 
 
@@ -120,24 +119,19 @@ class GameView(arcade.View):
             columns=2,
             count=2
         )
-        self.anchor_layout = UIAnchorLayout()
-        self.box_layout = UIBoxLayout(vertical=True, space_between=20)
         self.button = UITextureButton(
             texture=self.cont_button,
-            texture_hovered=self.cont_button_h
-        )
-        self.label = UILabel(
-            font_size=50,
-            text_color=arcade.color.WHITE,
-            text='paused',
-            width=200,
-            align='center'
+            texture_hovered=self.cont_button_h,
+            x=SCREEN_WIDTH // 2 - 225,
+            y=SCREEN_HEIGHT // 2 - 170,
+            scale=0.6
         )
         self.button.on_click = self.return_game
-        self.box_layout.add(self.label)
-        self.box_layout.add(self.button)
-        self.anchor_layout.add(self.box_layout)
-        self.manager.add(self.anchor_layout)
+        self.manager.add(self.button)
+
+        self.pause_texture = arcade.load_texture(
+            'assets/ui/background_pause.png'
+        )
     
     def on_draw(self):
         self.clear()
@@ -170,6 +164,15 @@ class GameView(arcade.View):
             self.gui_camera.use()
             self.batch.draw()
         else:
+            arcade.draw_texture_rect(
+                self.pause_texture,
+                arcade.rect.XYWH(
+                    SCREEN_WIDTH // 2,
+                    SCREEN_HEIGHT // 2,
+                    SCREEN_WIDTH,
+                    SCREEN_HEIGHT
+                )
+            )
             self.manager.draw()
     
     def on_key_press(self, key, modifiers):
