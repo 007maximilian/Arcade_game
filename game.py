@@ -381,40 +381,77 @@ class GameView(arcade.View):
 
 
 class MenuView(arcade.View):
-    def on_show_view(self):
-        self.batch = Batch()
-        arcade.set_background_color(arcade.color.BLACK)
-        self.manager = UIManager()
-        self.manager.enable()
-        self.but_texture, self.but_texture_hovered = arcade.SpriteSheet(
+    def __init__(self, first_time=True):
+        super().__init__()
+        self.running_start = first_time
+        self.timer = 0
+        self.anim_timer = 0.2
+        self.curr_frame = 0
+        self.but_textures = arcade.SpriteSheet(
             'assets/ui/button_start.png'
         ).get_texture_grid(
             (300, 90),
             columns=2,
             count=2
         )
-        self.anchor_layout = UIAnchorLayout()
-        self.box_layout = UIBoxLayout(vertical=True, space_between=20)
-        self.label = UILabel(
-            font_size=50,
-            text_color=arcade.color.WHITE,
-            text="unt1tl3d",
-            width=200,
-            align="center"
+
+    def on_show_view(self):
+        self.batch = Batch()
+        arcade.set_background_color(arcade.color.BLACK)
+        self.manager = UIManager()
+        self.manager.enable()
+        self.textures = arcade.SpriteSheet(
+            'assets/ui/start_scene.png'
+        ).get_texture_grid(
+            (160, 120),
+            columns=27,
+            count=26
         )
+
+        if self.running_start == True:
+            self.texture = self.textures[0]
+        else:
+            self.texture = self.textures[-1]
         self.button = UITextureButton(
-            texture=self.but_texture,
-            texture_hovered=self.but_texture_hovered
+            x=SCREEN_WIDTH // 2 - 150,
+            y=50,
+            texture=self.but_textures[0],
+            texture_hovered=self.but_textures[1],
         )
         self.button.on_click = self.change_view
-        self.box_layout.add(self.label)
-        self.box_layout.add(self.button)
-        self.anchor_layout.add(self.box_layout)
-        self.manager.add(self.anchor_layout)
-    
+        self.manager.add(self.button)
+
     def on_draw(self):
-        self.batch.draw()
-        self.manager.draw()
+        if self.running_start:
+            arcade.draw_texture_rect(
+                self.texture,
+                arcade.rect.XYWH(
+                    SCREEN_WIDTH // 2,
+                    SCREEN_HEIGHT // 2,
+                    SCREEN_WIDTH, SCREEN_HEIGHT
+                )
+            )
+        else:
+            arcade.draw_texture_rect(
+                self.texture,
+                arcade.rect.XYWH(
+                    SCREEN_WIDTH // 2,
+                    SCREEN_HEIGHT // 2,
+                    SCREEN_WIDTH, SCREEN_HEIGHT
+                )
+            )
+            self.batch.draw()
+            self.manager.draw()
+    
+    def on_update(self, delta_time):
+        if self.running_start:
+            self.timer += delta_time
+            if self.timer >= self.anim_timer:
+                self.timer = 0
+                self.curr_frame += 1
+                self.texture = self.textures[self.curr_frame]
+                if self.curr_frame == 25:
+                    self.running_start = False
     
     def change_view(self, event):
         self.manager.disable()
@@ -470,5 +507,5 @@ class GameOverView(arcade.View):
     def menu(self, event):
         self.clear()
         self.manager.disable()
-        menu = MenuView()
+        menu = MenuView(first_time=False)
         self.window.show_view(menu)
