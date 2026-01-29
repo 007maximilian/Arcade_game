@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="90" height="20" tilewidth="48" tileheight="48" infinite="0" nextlayerid="12" nextobjectid="1">
+ <tileset firstgid="1" source="../tilesets/tiles_1.tsx"/>
+ <layer id="5" name="deadable" width="90" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt0LENACAMA7BewgP8/x9iR10qKIMtZY6SCAAAAAAAADLz01SNQ7K9t3X/2bE5HndtC1gSDog=
+  </data>
+ </layer>
+ <layer id="3" name="breakable" width="90" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt0LEJACAMRUHXcP9FbWzFKBIU7yBdfvNKAQAAuF/tt/pfN7Y/0zmHzjl0znGis9ZzkU6jtjrHzTpFGusMwAsaQcgFxA==
+  </data>
+ </layer>
+ <layer id="4" name="specials" width="90" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt1DENADAMwLAAWfnT3DsGlSYbQa4UAAAAAACvqc52BLBqvICPXZtiAJA=
+  </data>
+ </layer>
+ <layer id="6" name="turrets_left" width="90" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztzgENAAAIA6AHsn8+Y9w5SEACAAAAAABcNe0A8M4C20AALQ==
+  </data>
+ </layer>
+ <layer id="10" name="turrets_right" width="90" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztzjEBAAAIA6AFsn8+W8xDSEACAPDXXAcAAAAAoGwBY70ALQ==
+  </data>
+ </layer>
+ <layer id="9" name="spawn" width="90" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztzjEBAAAMAiADrX++xfAQEpAAAAAAAGy6dgAACh5QLwAt
+  </data>
+ </layer>
+ <layer id="8" name="deco" width="90" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt1jEKwEAIBMB9xUHSHCT//2PakP5OgjONdi4WYgIAAGud1QEAgBZGdYAmOvx2V5K7aPb4VNaw5z3+tt/j1c/iW1Ctw63v7gE8JwGV
+  </data>
+ </layer>
+ <layer id="7" name="walls" width="90" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztlkEKwCAMBPOLgP7/n71YkFBU1NWE7kBuousYgiKEEEIIIVjS7QA/gZ7PQM9noGc8Gsyz3g4wSQTPuVSiZxipOJbKc0TXnj0nk01NRcKrZ+tYAjsWZ56zmREW288I36g3fPNmUH0xsn7U824vrf1WztOqpxFVU/8beutbc3nG90gP9PbZ4dnj7Bv1u6vPV89D50Nw8p6nvD5/CBbI
+  </data>
+ </layer>
+ <layer id="2" name="collision" width="90" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt1lEKhSAQheHZhaT732cvRiJWY3omh84P8xZe+65IIowxxhhj2OLXG/hJdLaJzja1nLc82rbGsLPgzDmA1kXnwTnliXSGOcdsLIWzR2uk86h1rPYWqvHUiPOV7Qzn2lgcG8uAs8a41zlVd0Rrr+gzjfoPj/0m0LTSPK91nu1yt97I74XiTCOmrPxueHr+7l5+4605A0/rzHBe8e7T+va4axytZoUs39PKdQfQLByi
+  </data>
+ </layer>
+</map>

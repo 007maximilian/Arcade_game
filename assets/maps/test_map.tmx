@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="48" tileheight="48" infinite="0" nextlayerid="8" nextobjectid="1">
+ <editorsettings>
+  <export target="test_map." format="tmx"/>
+ </editorsettings>
+ <tileset firstgid="1" source="../tilesets/tiles_1.tsx"/>
+ <layer id="2" name="walls" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztkUEKACEMA32FLPr/fy4LHiTEupKClwwEFKVOaynGGGNu0G4LbLCfhv00svw6SQYZfn3U+VKn9cqV9bJK9v9W2LP6DRLdV/xYr3/qR29iDXV+OAvVD893d5+DMNeMRLxT4wmH
+  </data>
+ </layer>
+ <layer id="7" name="turrets" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztzjEBAAAMAiDD2D+jMXYMEpAAANDrADwxh7AAJQ==
+  </data>
+ </layer>
+ <layer id="3" name="deadable" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztwzENAAAIA7Apwb9M/gngoU2aAAAAl6Z+sn/QAHk=
+  </data>
+ </layer>
+ <layer id="4" name="specials" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztw7EJAAAIA7Ae4v93unYTnBNIAgDAZSrwtyAvAFU=
+  </data>
+ </layer>
+ <layer id="5" name="breakable" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMAoGN5AcaAegAUkseDCBUfdRBga7+0bBKBjqAAADKwIO
+  </data>
+ </layer>
+ <layer id="6" name="collision" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztkUsKwCAMRD2FVL3/PUuhizJMYkukcTEPBvwRX7QUIYQQGfRsgQk7+TWylunXSBD52fzpN0h28Rt3nSv1MbZcWS9WVv9vhTmr3yHe+Ygf6/VNfe9OrBF9P3yLqB/uz84eH8JcV8TjBEqOC5Q=
+  </data>
+ </layer>
+</map>
